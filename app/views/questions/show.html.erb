@@ -3,8 +3,6 @@
       votes = <%= @question.votes %>
       $("span.vote-count-post").html(votes);
 
-      <% if current_user %>
-
         $("div.upvote-off").live('click', function() {
           $.post("<%= question_votes_path %>", { question_id: "<%= @question.id %>", vote: "up" } ); 
           if ( $("div#upvote").hasClass('upvote-off') ) {

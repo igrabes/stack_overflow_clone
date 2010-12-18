@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="summary">
-    <h3><%= link_to @question.title, @question %></h3>
+    <h3><%= link_to @question.title, question_answers_path(@question) %></h3>
     <% if @excerpt %>
       <div class="excerpt">
         <%= @question.excerpt %>

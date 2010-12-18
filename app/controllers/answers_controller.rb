@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.xml
   before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
-  before_filter :get_question, :only => [:new, :create, :edit, :update, :show, :destroy]
+  before_filter :get_question, :only => [:new, :create, :edit, :update, :show, :destroy, :index]
 
   def index
     if params[:question_id]

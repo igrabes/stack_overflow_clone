@@ -3,7 +3,6 @@ class Question < ActiveRecord::Base
 
   belongs_to :user
   has_many :answers
-  has_many :votes
 
   scope :sorted_by, lambda {|sort|
     if sort == "newest"
@@ -22,16 +21,16 @@ class Question < ActiveRecord::Base
   end
 
   def up_votes
-    QuestionVote.count :all, :conditions => {:question_id => self.id, :value => 1}
+    Vote.count :all, :conditions => {:post_id => self.id, :value => 1, :type => :question}
   end
 
   def down_votes
-    QuestionVote.count :all, :conditions => {:question_id => self.id, :value => -1}
+    QuestionVote.count :all, :conditions => {:post_id => self.id, :value => -1, :type => :question}
   end
 
-  def votes
-    QuestionVote.sum :value, :conditions => { :question_id => self.id}
-  end
+  #def vote_score
+  #  QuestionVote.sum :value, :conditions => { :question_id => self.id, :type => :question}
+  #end
 
   def num_answers
     answers.count
