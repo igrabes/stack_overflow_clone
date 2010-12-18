@@ -1,0 +1,37 @@
+<div class="question-summary">
+  <div class="statscontainer">
+    <div class="statsarrow"></div>
+    <div class="stats">
+      <div class="vote">
+        <div class="votes">
+          <span class="vote-count-post"><strong><%= @question.votes %></strong></span>
+          <div class="viewcount"><%= pluralize_word(@question.votes, 'vote') %></div>
+        </div>
+        <div class="<%= @question.answered? ? 'answered' : 'unanswered' %> status"> 
+          <strong><%= @question.num_answers %></strong><br/>
+          <%= pluralize_word(@question.num_answers, 'answer') %>
+        </div>
+      </div>
+      <div class="views"> <%= pluralize(@question.views, 'view') %></div>
+    </div>
+  </div>
+  <div class="summary">
+    <h3><%= link_to @question.title, @question %></h3>
+    <% if @excerpt %>
+      <div class="excerpt">
+        <%= @question.excerpt %>
+      </div>
+    <% end %>
+    <div class="tags">
+      <% @question.tags.each do |tag| %>
+        <%= link_to tag.name, merge_params(:controller => :questions, :action => :index, :tag => tag.name), :class => 'post-tag' %>
+      <% end %>
+    </div>
+    <div class="started fr">
+      <div class="user-action-time">asked <span class="relativetime"> <%= time_ago_in_words(@question.created_at) %> ago</span></div>
+      <div class="user-details">
+        by <%= link_to @question.user.login, @question.user %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'question_info' %>
+
+<p>
+  <b>Answer posted by:</b>
+  <%= @answer.user.login %>
+</p>
+
+<p>
+  <b>Answer Text:</b>
+  <%= @answer.text %>
+</p>
+
+
+<%= link_to 'Edit', edit_question_answer_path(@question, @answer) %> |
+<%= link_to 'Back', question_answers_path(@question) %>

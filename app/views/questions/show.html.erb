@@ -1,0 +1,81 @@
+  <script type="text/javascript">
+    $(document).ready(function() {
+      votes = <%= @question.votes %>
+      $("span.vote-count-post").html(votes);
+
+      <% if current_user %>
+
+        $("div.upvote-off").live('click', function() {
+          $.post("<%= question_votes_path %>", { question_id: "<%= @question.id %>", vote: "up" } ); 
+          if ( $("div#upvote").hasClass('upvote-off') ) {
+            votes += 1;
+          }
+          if ( $("div#downvote").hasClass("downvote-on") ) {
+            votes += 1;
+          }
+
+          $("div#upvote").addClass('upvote-on');
+          $("div#upvote").removeClass('upvote-off');
+          $("div#downvote").removeClass('downvote-on');
+          $("div#downvote").addClass('downvote-off');
+
+          $("span.vote-count-post").text(votes);
+
+        });
+
+      $("div.downvote-off").live('click', function() {
+          $.post("<%= question_votes_path %>", { question_id: "<%= @question.id %>", vote: "down" } ); 
+          if ( $("div#downvote").hasClass('downvote-off') ) {
+            votes -= 1;
+          }
+          if ( $("div#upvote").hasClass("upvote-on") ){
+            votes -= 1;
+          }
+
+          $("div#downvote").addClass('downvote-on');
+          $("div#downvote").removeClass('downvote-off');
+          $("div#upvote").removeClass('upvote-on');
+          $("div#upvote").addClass('upvote-off');
+
+          $("span.vote-count-post").text(votes);
+      });
+    <% end %>
+  });
+ 
+  </script>
+
+<div class="subheader">
+  <h1><%= @question.title %></h1>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td class="votecell">
+        <div class="vote">
+          <div class="votearrow <%= upvoted_question?(current_user, @question) ? 'upvote-on' : 'upvote-off' %>" id="upvote"></div>
+          <span class="vote-count-post"> </span>
+          <div class="votearrow <%= downvoted_question?(current_user, @question) ? 'downvote-on' : 'downvote-off' %>" id="downvote"></div>
+        </div>
+      </td>
+      <td class="postcell">
+        <div class="post-text">
+          <%= @question.text %>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="started fr">
+  <div class="user-action-time">asked <span class="relativetime"> <%= time_ago_in_words(@question.created_at) %> ago</span></div>
+  <div class="user-details">
+    by <%= link_to @question.user.login, @question.user %>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Answer this question', new_question_answer_path(@question) %>
+

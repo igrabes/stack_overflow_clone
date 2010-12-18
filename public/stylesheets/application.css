@@ -1,0 +1,392 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  background: transparent;
+  border: 0px;
+  font-size: 100%;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: baseline;
+}
+
+a {
+  color: #07C;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+h2 {
+  font-family: 'Trebuchet MS', 'Liberation Sans', 'DejaVu Sans', sans-serif;
+  font-size: 140%;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+h3 {
+  font-family: 'Trebuchet MS', 'Liberation Sans', 'DejaVu Sans', sans-serif;
+  font-size: 110%;
+  font-weight: bold;
+}
+
+ul {
+  list-style: disc;
+}
+
+div {
+  display: block;
+}
+
+body {
+  color: black;
+  font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
+  font-size: 80%;
+  text-align: left;
+  line-height: 1;
+}
+
+.nav{float:left;font-size:125%; margin-left: 20px;}
+
+.nav ul{margin:0;}
+
+.nav li{background:#777;display:block;float:left;margin-right:7px;}
+.nav .youarehere{background:#f90;}.youarehere a{color:#fff;}
+.nav li:hover{background-color:#f90;}
+.nav a{color:#fff;display:block;font-weight:bold;padding:6px 12px 6px 12px;text-decoration:none;}
+
+.question-summary {
+  border-bottom: 1px dotted #999;
+  float: left;
+  overflow: hidden;
+  padding: 11px 0px;
+  width: 730px;
+}
+
+.statscontainer {
+  float: left;
+  margin-right: 8px;
+  width: 86px;
+}
+
+.statsarrow {
+  background-position: 0px -435px;
+  float: right;
+  height: 13px;
+  margin-top: 12px;
+  width: 7px;
+}
+
+.stats {
+  background: #EEE;
+  margin: 0px 0px 0px 7px;
+  padding: 4px 7px 6px;
+  width: 58px;
+}
+
+.vote {
+  text-align: center;
+}
+
+.votes {
+  color: #555;
+  padding: 0px 0px 7px;
+  text-align: center;
+}
+
+.vote span {
+  color: #808185;
+  display: block;
+  font-weight: bold;
+}
+
+.vote-count-post {
+  display: block;
+  font-size: 240%;
+}
+
+.status {
+  margin-top: -3px;
+  padding: 4px 0px;
+  text-align: center;
+}
+
+.answered {
+  background: #75845C;
+  color: white;
+}
+
+.unanswered {
+  background: #9A4444;
+  color: white;
+}
+
+.statscontainer {
+  float: left;
+  margin-right: 8px;
+  width: 86px;
+}
+
+.summary {
+  float: left;
+  width: 635px;
+}
+
+.summary h3 {
+  font-size: 130%;
+}
+
+.question-hyperlink {
+  font-weight: bold;
+}
+
+.excerpt {
+  line-height: 1.2;
+  margin: 0px;
+  padding-bottom: 5px;
+  padding: 0px 0px 5px;
+}
+
+.tags {
+  float: left;
+  line-height: 18px;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.started {
+  color: #999;
+  float: right;
+  line-height: 18px;
+  width: 185px;
+}
+
+.right-bar {
+  margin-right: 30px;
+  float: right;
+}
+
+.userbar {
+  background-color: #F4A83D;
+  border-bottom: 1px solid #D6800C;
+  padding: 7px 20px;
+  text-align: right;
+}
+
+#content {
+  margin:0 auto;
+  width:960px;
+}
+
+.subheader {
+  border-bottom:1px solid #666666;
+  clear:both;
+  height:34px;
+  margin-bottom:15px;
+}
+
+.subheader h1, .subheader h2 {
+  float:left;
+  font-size:170%;
+  line-height:34px;
+  margin-bottom:0;
+}
+
+h1 {
+  font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+  font-size:170%;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.user-details {
+  color: #888;
+  line-height: 17px;
+}
+
+.user-details td {
+  color: black;
+  padding: 4px 0px;
+}
+
+table {
+  border-spacing: 0px 0px;
+  border-collapse: collapse;
+}
+
+.user-detail-key{
+  width: 130px;
+}
+
+.user-details-value  {
+  width: 230px;
+}
+
+.no-overflow {
+  color: #999;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 230px;
+}
+
+.fc {
+  clear: both;
+}
+
+.relativetime {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.views {
+  color: #999;
+  padding-top: 4px;
+  text-align: center;
+}
+
+.count {
+  color: #808185;
+  font-size: 350%;
+  font-weight: bold;
+}
+
+.word {
+  color: #000;
+  font-weight: bold;
+  font-size: 200%
+}
+
+.upvote-off {
+  background-image: url(/images/upvote_off.png);
+}
+
+.downvote-off {
+  background-image: url(/images/downvote_off.png);
+}
+
+.upvote-on {
+  background-image: url(/images/upvote_on.png);
+}
+
+.downvote-on {
+  background-image: url(/images/downvote_on.png);
+}
+
+.votecell {
+  vertical-align: top;
+  width: 60px;
+}
+
+.vote {
+  text-align: center;
+}
+
+.votearrow {
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: block;
+  height: 25px;
+  margin: 0px auto;
+  width: 41px;
+  background-position: center center;
+}
+
+.vote span {
+  color: #808185;
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}
+.vote-count-post {
+  display: block;
+  font-size: 240%;
+}
+
+.askquestion {
+  float: right;
+}
+
+#notice {
+  color: green;
+  padding-bottom: 5px;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+
+.post-tag {
+  background-color: #E0EAF1;
+  border-bottom: 1px solid #3E6D8E;
+  border-right: 1px solid #7F9FB6;
+  color: #3E6D8E;
+  font-size: 90%;
+  line-height: 2.4;
+  margin: 2px 2px 2px 0px;
+  padding: 3px 4px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#tabs {
+  float: right;
+  font-weight: bold;
+}
+#tabs a.youarehere {
+  background: white;
+  border: 1px solid;
+  color: black;
+  border-bottom-color: white;
+  font-size: 120%;
+  height: 30px;
+  line-height: 28px;
+  margin-top: 3px;
+  padding: 0px 11px;
+}
+#tabs a {
+  background: inherit;
+  border: 1px solid white;
+  color: #777;
+  display: block;
+  float: left;
+  font-size: 90%;
+  height: 24px;
+  line-height: 22px;
+  margin: 8px 8px 0px 0px;
+  padding: 0px 11px;
+  text-decoration: none;
+}

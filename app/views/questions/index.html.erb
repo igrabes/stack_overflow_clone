@@ -1,0 +1,15 @@
+<div class="subheader">
+  <h1>Listing questions</h1>
+  <div id="tabs">
+    <% ["newest", "votes", "active", "views"].each do |sort| %>
+      <%= link_to sort.capitalize, merge_params(:action => :index, :sort => sort), :class => @sort_method==sort ? "youarehere" : "" %>
+    <% end %>
+  </div>
+
+</div>
+
+<div>
+  <% @questions.each do |question| %>
+    <%= render_cell :question, :summary, :question => question, :excerpt => true %>
+  <% end %>
+</div>

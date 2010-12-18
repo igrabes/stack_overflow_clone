@@ -1,0 +1,48 @@
+<div class="subheader"></div>
+<h2 style="margin-top:20px"> <%=h @user.login %> </h2>
+<table class="user-details">
+  <tr>
+    <td class="user-detail-key">Real name</td>
+    <td class="user-detail-value"><span class="no-overflow"><%= @user.name %></span></td>
+  </tr>
+
+  <tr>
+    <td class="user-detail-key">Member for</td>
+    <td class="user-detail-value"><span class="no-overflow"><%= time_ago_in_words(@user.created_at) %></span></td>
+  </tr>
+
+  <tr>
+    <td class="user-detail-key">Last logged in</td>
+    <td class="user-detail-value"><span class="no-overflow"><%= time_ago_in_words(@user.last_login_at) %> ago</span></td>
+  </tr>
+
+  <tr>
+    <td class="user-detail-key">Last active</td>
+    <td class="user-detail-value"><span class="no-overflow"><%= time_ago_in_words(@user.last_request_at) %> ago</span></td>
+  </tr>
+
+  <tr>
+    <td class="user-detail-key">Hometown</td>
+    <td class="user-detail-value"><span class="no-overflow"><%= @user.hometown %></span></td>
+  </tr>
+
+  <tr>
+    <td class="user-detail-key">Age</td>
+    <td class="user-detail-value"><span class="no-overflow"><%= @user.age %></span></td>
+  </tr>
+
+  <tr>
+    <td class="user-detail-key">Login count</td>
+    <td class="user-detail-value"><span class="no-overflow"><%= @user.login_count %></span></td>
+  </tr>
+
+</table>
+
+<div class="questions">
+  <div class="summarycount">
+    <span class="count"> <%= @user.question_count %></span><span class="word"><%= pluralize_word(@user.question_count, "Question") %></span>
+  </div>
+  <% @questions.each do |question| %>
+    <%= render_cell :question, :summary, :question => question, :excerpt => true %>
+  <% end %>
+</div>
