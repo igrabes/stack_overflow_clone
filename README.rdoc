@@ -1,0 +1,56 @@
+= Stack Overflow Clone
+
+== Sources
+Most of the CSS and some of the HTML was ripped directly from StackOverflow's website. However, all ruby code and javascript was written by me.
+
+== Minimum Functionality
+
+=== Registration
+
+Works as specified by the requirements. User's passwords are stored as salted hashes for security.
+
+=== User Profile
+
+Works as specified by the requirements. Also has "member for", "last active", and "age" information in the user profile (for some fun with dates)
+
+=== Questions
+
+Need to add comments to questions. Tags are specified by the user in a comma delimited list. The server will parse this list and update the taggings list appropriately. The tag list holds two indices, +tag_id+ and +taggable_id, taggable_type, context+ for high performance tag querying.
+
+=== Voting
+
+Works as specified in the requirements.
+
+The page uses AJAX requests to handle the votes without needing to refresh the page. The server returns a JSON-semistructured data object to update the vote count and arrow colors, or to report errors (i.e. it will report if the user is not logged in.)
+
+Internally, there is a votes table that uses single-table inheritance (STI) to apply to both Questions and Answers. The table has a 'value' column, so the score of a Question or Answer can be computed using the database directly using SUM aggregation query. Questions and Answers also store a cached 'score' value, which vastly improves performance for sorting by votes.
+
+=== Browsing Questions
+
+=== User Badges
+
+=== Search
+
+== Advanced features
+
+=== Views
+This is implemented as specified in the requirements.
+
+=== Security
+
+This clone is built to be very secure.
+
+* It is resistant to SQL injection, HTML injection, and Javascript injection attacks. 
+* It uses a CSRF token to resist cross-site request forgeries.
+* User passwords are stored as salted hashes, so they will not be exposed or vulnerable to rainbow-table attacks if the database is compromised.
+* All important data is validated before being entered into the database. For example, the AJAX request that makes the vote contains a parameter +value+ which indicates whether the vote should be an upvote (1) or a downvote (-1). If a malicious user were to put in another value, such as 1000, the request will be rejected. Without this validation, a malicious user would be able to grant 1000 upvotes with a single user name.
+* Edits that should only be made by a user are strictly enforced (rather than using security by obscurity.) For example, if a malicious user tries to edit another user's profile by manipulating the 'id' field in the profile edit URL, they will be returned to their own profile editing page.
+
+== Known issues
+
+=== Performance
+The site does perform very well. However, it runs on a server that is used by others, and occasionally it gets bogged down with their jobs. In particular, there are some rsync scripts that run nightly around 4am that will bring the site to a near standstill. If the site is slow, please try it again later.
+
+=== Race condition
+Currently, a race condition is possible in some of the validations and in the vote score cache updater. This won't be a problem unless many people are using the site at once (thousands or more), but it will be fixed in the future.
+
