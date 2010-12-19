@@ -38,6 +38,7 @@
 
 </table>
 
+<div class="subheader"></div>
 <div class="questions">
   <div class="summarycount">
     <span class="count"> <%= @user.question_count %></span><span class="word"><%= pluralize_word(@user.question_count, "Question") %></span>
@@ -46,3 +47,14 @@
     <%= render_cell :question, :summary, :question => question, :excerpt => true %>
   <% end %>
 </div>
+
+<div class="subheader"></div>
+<div class="questions">
+  <div class="summarycount">
+    <span class="count"> <%= @user.badges.count %></span><span class="word"><%= pluralize_word(@user.badges.count, "Badge") %></span>
+  </div>
+  <% @user.badges.each do |badge| %>
+    <div class="badge"><%= badge.h_name %></div>
+  <% end %>
+</div>
+

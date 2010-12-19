@@ -1,0 +1,4 @@
+<div class="subheader"><h1>Badges</h1></div>
+<% @counts.each do |name, num| %>
+  <div class="badge"><%= name.humanize %></div>x<%= num %><br/>
+<% end %>

@@ -1,5 +1,7 @@
 StackOverflowClone::Application.routes.draw do
 
+  resources :badges
+
   resources :votes
 
   resources :tags

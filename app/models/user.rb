@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   acts_as_authentic
   has_many :questions
   has_many :answers
+  has_many :votes, :dependent => :destroy
+  has_many :badges, :dependent => :destroy
 
   def age
     (Date.today - birthday).to_i/365 if birthday

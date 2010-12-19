@@ -23,6 +23,8 @@ class UsersController < ApplicationController
       @user = current_user
     end
 
+    Badge.apply(@user)
+
     @questions = @user.questions
 
   end
