@@ -27,9 +27,13 @@ Internally, there is a votes table that uses single-table inheritance (STI) to a
 
 === Browsing Questions
 
+Works as specified in the requirements
+
 === User Badges
 
 === Search
+
+This works as specified in the requirements. The search bar is visible when you are in the questions listing.
 
 == Advanced features
 
@@ -49,7 +53,7 @@ This clone is built to be very secure.
 == Known issues
 
 === Performance
-The site does perform very well. However, it runs on a server that is used by others, and occasionally it gets bogged down with their jobs. In particular, there are some rsync scripts that run nightly around 4am that will bring the site to a near standstill. If the site is slow, please try it again later.
+The site does perform very well, and there should be no noticeable delays when browsing the website. However, it runs on a server that is used by others, and occasionally it gets bogged down with their jobs. In particular, there are some rsync scripts that run nightly around 4am that will bring the site to a near standstill. If the site is slow, please try it again later.
 
 === Race condition
 Currently, a race condition is possible in some of the validations and in the vote score cache updater. This won't be a problem unless many people are using the site at once (thousands or more), but it will be fixed in the future.

@@ -194,6 +194,11 @@ body {
   margin-bottom:0;
 }
 
+.subheader-search {
+  float:left;
+  margin-left: 20px;
+}
+
 h1 {
   font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
   font-size:170%;
@@ -366,9 +371,10 @@ div.field, div.actions {
   float: right;
   font-weight: bold;
 }
+
 #tabs a.youarehere {
   background: white;
-  border: 1px solid;
+  border: 1px solid black;
   color: black;
   border-bottom-color: white;
   font-size: 120%;
@@ -377,6 +383,7 @@ div.field, div.actions {
   margin-top: 3px;
   padding: 0px 11px;
 }
+
 #tabs a {
   background: inherit;
   border: 1px solid white;

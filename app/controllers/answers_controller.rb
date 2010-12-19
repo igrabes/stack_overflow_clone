@@ -54,7 +54,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to([@question, @answer], :notice => 'Answer was successfully created.') }
+        format.html { redirect_to(question_answers_url(@question), :notice => 'Answer was successfully created.') }
       else
         format.html { render :action => "new" }
       end

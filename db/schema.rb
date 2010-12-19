@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101218233517) do
+ActiveRecord::Schema.define(:version => 20101219032348) do
 
   create_table "answers", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20101218233517) do
     t.string   "title"
     t.integer  "views",      :default => 0, :null => false
     t.integer  "score",      :default => 0, :null => false
+    t.datetime "active_at"
   end
 
   create_table "taggings", :force => true do |t|

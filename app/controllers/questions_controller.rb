@@ -4,17 +4,10 @@ class QuestionsController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
 
   def index
-    @sort_method = params[:sort] || "newest"
+    params[:sorted_by] ||= "newest"
+    @sorted_by = params[:sorted_by]
 
-    if params[:tag]
-      @questions = Question.sorted_by(@sort_method).tagged_with(params[:tag])
-    else
-      @questions = Question.sorted_by(@sort_method).all
-    end
-
-    #@questions.sorted_by(@sort_method)
-
-    
+    @questions = Question.filter(params);
 
     respond_to do |format|
       format.html # index.html.erb
@@ -77,7 +70,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.update_attributes(params[:question])
-        format.html { redirect_to(@question, :notice => 'Question was successfully updated.') }
+        format.html { redirect_to(question_answers_path(@question), :notice => 'Question was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -4,8 +4,8 @@
     <div class="stats">
       <div class="vote">
         <div class="votes">
-          <span class="vote-count-post"><strong><%= @question.votes %></strong></span>
-          <div class="viewcount"><%= pluralize_word(@question.votes, 'vote') %></div>
+          <span class="vote-count-post"><strong><%= @question.score %></strong></span>
+          <div class="viewcount"><%= pluralize_word(@question.score, 'vote') %></div>
         </div>
         <div class="<%= @question.answered? ? 'answered' : 'unanswered' %> status"> 
           <strong><%= @question.num_answers %></strong><br/>
@@ -24,7 +24,7 @@
     <% end %>
     <div class="tags">
       <% @question.tags.each do |tag| %>
-        <%= link_to tag.name, merge_params(:controller => :questions, :action => :index, :tag => tag.name), :class => 'post-tag' %>
+        <%= link_to tag.name, merge_params(:controller => :questions, :action => :index, :tagged_with => tag.name), :class => 'post-tag' %>
       <% end %>
     </div>
     <div class="started fr">
@@ -32,6 +32,7 @@
       <div class="user-details">
         by <%= link_to @question.user.login, @question.user %>
       </div>
+      <div class="active-time"> Last active <%= time_ago_in_words(@question.active_at) %> ago </div>
     </div>
   </div>
 </div>
