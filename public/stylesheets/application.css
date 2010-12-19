@@ -251,6 +251,10 @@ table {
   text-align: center;
 }
 
+.subheader .count {
+  font-size: 170%;
+}
+
 .count {
   color: #808185;
   font-size: 350%;

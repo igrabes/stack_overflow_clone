@@ -25,7 +25,12 @@ class UsersController < ApplicationController
 
     Badge.apply(@user)
 
-    @questions = @user.questions
+    params[:question] ||= {}
+    params[:question][:sorted_by] ||= "newest"
+    params[:question][:user_id_equals] = @user.id
+    @sorted_by = params[:question][:sorted_by]
+
+    @questions = Question.filter(params[:question]);
 
   end
 

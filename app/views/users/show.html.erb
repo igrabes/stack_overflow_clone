@@ -38,11 +38,17 @@
 
 </table>
 
-<div class="subheader"></div>
-<div class="questions">
-  <div class="summarycount">
-    <span class="count"> <%= @user.question_count %></span><span class="word"><%= pluralize_word(@user.question_count, "Question") %></span>
+<div class="subheader">
+  <h1><span class="count"><%= @user.question_count %></span><%= pluralize_word(@user.question_count, "Question") %></h1>
+
+  <div id="tabs">
+    <% ["newest", "votes", "active", "views"].each do |sort| %>
+      <%= link_to sort.capitalize, merge_params(:question => {:sorted_by => sort}), :class => @sorted_by==sort ? "youarehere" : "" %>
+    <% end %>
   </div>
+
+</div>
+<div class="questions">
   <% @questions.each do |question| %>
     <%= render_cell :question, :summary, :question => question, :excerpt => true %>
   <% end %>

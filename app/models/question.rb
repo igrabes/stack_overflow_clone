@@ -34,6 +34,10 @@ class Question < ActiveRecord::Base
     end
   }
 
+  scope :user_id_equals, lambda { |id|
+    where(:user_id => id)
+  }
+
   def excerpt
     if text 
       exc = text[0, 190]
