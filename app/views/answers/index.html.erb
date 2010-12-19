@@ -58,7 +58,7 @@
   <%= link_to 'Edit this question', edit_question_path(@question) %> |
 <% end %>
 
-<%= link_to 'Answer this question', new_question_answer_path(@question) %>
+<%= link_to 'Answer this question', new_question_answer_path(@question) %> | <%= link_to 'Comment on this question', new_comment_answer_path(@question) %>
 
 <% if @answers %>
   <div class="subheader">

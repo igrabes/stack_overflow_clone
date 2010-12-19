@@ -1,5 +1,7 @@
 StackOverflowClone::Application.routes.draw do
 
+  resources :comments
+
   resources :badges
 
   resources :votes
@@ -12,6 +14,7 @@ StackOverflowClone::Application.routes.draw do
 
   resources :questions do
     resources :answers
+    resources :comments
     collection do
       get 'tags'
     end
