@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
 
   belongs_to :user
   has_many :answers
+  has_many :votes, :as => :voteable
 
   scope :sorted_by, lambda {|sort|
     if sort == "newest"

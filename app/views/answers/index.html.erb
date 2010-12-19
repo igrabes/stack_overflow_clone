@@ -1,45 +1,26 @@
-  <script type="text/javascript">
-    $(document).ready(function() {
-      votes = <%= @question.votes %>
-      $("span.vote-count-post").html(votes);
+<script type="text/javascript">
+  function vote(value, obj_type, id, click_obj) {
+    container = click_obj.parent();
 
-        $("div.upvote-off").live('click', function() {
-          $.post("<%= question_votes_path %>", { question_id: "<%= @question.id %>", vote: "up" } ); 
-          if ( $("div#upvote").hasClass('upvote-off') ) {
-            votes += 1;
-          }
-          if ( $("div#downvote").hasClass("downvote-on") ) {
-            votes += 1;
-          }
+    $.post("<%= votes_path %>", { vote: {value: value, voteable_type: obj_type, voteable_id: id} }, function(data) {
+      if(data.success) {
+        container.children(".upvote").toggleClass("upvote-on", data.upvote);
+        container.children(".upvote").toggleClass("upvote-off", ! data.upvote);
+        container.children(".downvote").toggleClass("downvote-on", data.downvote);
+        container.children(".downvote").toggleClass("downvote-off", ! data.downvote);
+        container.children(".vote-count-post").text(data.score)
+      }
+      else {
+        str = ""
+        for (var key in data.error) {
+          str += data.error[key] + "\n";
+        }
+        alert(str);
+      }
+    }, "json");
+  }
 
-          $("div#upvote").addClass('upvote-on');
-          $("div#upvote").removeClass('upvote-off');
-          $("div#downvote").removeClass('downvote-on');
-          $("div#downvote").addClass('downvote-off');
-
-          $("span.vote-count-post").text(votes);
-
-        });
-
-      $("div.downvote-off").live('click', function() {
-          $.post("<%= question_votes_path %>", { question_id: "<%= @question.id %>", vote: "down" } ); 
-          if ( $("div#downvote").hasClass('downvote-off') ) {
-            votes -= 1;
-          }
-          if ( $("div#upvote").hasClass("upvote-on") ){
-            votes -= 1;
-          }
-
-          $("div#downvote").addClass('downvote-on');
-          $("div#downvote").removeClass('downvote-off');
-          $("div#upvote").removeClass('upvote-on');
-          $("div#upvote").addClass('upvote-off');
-
-          $("span.vote-count-post").text(votes);
-      });
-  });
- 
-  </script>
+</script>
 
 <div class="subheader">
   <h1><%= @question.title %></h1>
@@ -52,9 +33,9 @@
     <tr>
       <td class="votecell">
         <div class="vote">
-          <div class="votearrow <%= upvoted_question?(current_user, @question) ? 'upvote-on' : 'upvote-off' %>" id="upvote"></div>
-          <span class="vote-count-post"> </span>
-          <div class="votearrow <%= downvoted_question?(current_user, @question) ? 'downvote-on' : 'downvote-off' %>" id="downvote"></div>
+          <div class="upvote votearrow <%= voted?(@question, 1) ? 'upvote-on' : 'upvote-off' %>", onclick="vote(1, 'Question', <%= @question.id %>, $(this))"></div>
+          <span class="vote-count-post"> <%= @question.score %> </span>
+          <div class="downvote votearrow <%= voted?(@question, -1) ? 'downvote-on' : 'downvote-off' %>", onclick="vote(-1, 'Question', <%= @question.id %>, $(this))"></div>
         </div>
       </td>
       <td class="postcell">
@@ -73,26 +54,47 @@
 </div>
 
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
+<% if @question.user == current_user %>
+  <%= link_to 'Edit this question', edit_question_path(@question) %> |
+<% end %>
+
 <%= link_to 'Answer this question', new_question_answer_path(@question) %>
 
+<% if @answers %>
+  <div class="subheader">
+    <h1>Answers</h1>
+  </div>
 
-
-
-<h1>Listing answers</h1>
-
-<% @answers.each do |answer| %>
-  <tr>
-    <td><%= answer.user_id %></td>
-    <td><%= answer.question_id %></td>
-    <td><%= answer.text %></td>
-    <td><%= link_to 'Show', question_answer_path(answer.question, answer) %></td>
-    <td><%= link_to 'Edit', edit_question_answer_path(answer.question, answer) %></td>
-    <td><%= link_to 'Destroy', question_answer_path(answer.question, answer), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <% @answers.each do |answer| %>
+    <table>
+      <tbody>
+        <tr>
+          <td class="votecell">
+            <div class="vote">
+              <div class="upvote votearrow <%= voted?(answer, 1) ? 'upvote-on' : 'upvote-off' %>", onclick="vote(1, 'Answer', <%= answer.id %>, $(this))"></div>
+              <span class="vote-count-post"> <%= answer.score %> </span>
+              <div class="downvote votearrow <%= voted?(answer, -1) ? 'downvote-on' : 'downvote-off' %>", onclick="vote(-1, 'Answer', <%= answer.id %>, $(this))"></div>
+            </div>
+          </td>
+          <td class="postcell">
+            <div class="post-text">
+              <%= answer.text %>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="started fr">
+      <div class="user-action-time">posted <span class="relativetime"> <%= time_ago_in_words(answer.created_at) %> ago</span></div>
+      <div class="user-details">
+        by <%= link_to answer.user.login, answer.user %>
+      </div>
+      <% if current_user == answer.user %>
+      <% end %>
+    </div>
+    <%= link_to "Edit this answer", edit_question_answer_path(answer.question, answer) %>
+  <% end %>
 <% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Answer', new_question_answer_path(@question) %>
+

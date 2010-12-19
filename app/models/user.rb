@@ -11,12 +11,8 @@ class User < ActiveRecord::Base
     questions.count
   end
 
-  def upvoted_question?(question)
-    QuestionVote.find(:first, :conditions => {:user_id => id, :question_id => question.id, :value => 1})
-  end
-
-  def downvoted_question?(question)
-    QuestionVote.find(:first, :conditions => {:user_id => id, :question_id => question.id, :value => -1})
+  def voted?(object, value)
+    Vote.find(:first, :conditions => {:user_id => id, :voteable_id => object.id, :voteable_type => object.class.to_s, :value => value })
   end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101218195608) do
+ActiveRecord::Schema.define(:version => 20101218233517) do
 
   create_table "answers", :force => true do |t|
     t.integer  "user_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20101218195608) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score",       :default => 0, :null => false
   end
 
   create_table "question_votes", :force => true do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20101218195608) do
     t.datetime "updated_at"
     t.string   "title"
     t.integer  "views",      :default => 0, :null => false
+    t.integer  "score",      :default => 0, :null => false
   end
 
   create_table "taggings", :force => true do |t|
@@ -85,6 +87,15 @@ ActiveRecord::Schema.define(:version => 20101218195608) do
     t.string   "hometown"
     t.string   "name"
     t.date     "birthday"
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "voteable_id"
+    t.string   "voteable_type"
+    t.integer  "user_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
