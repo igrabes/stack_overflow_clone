@@ -15,7 +15,7 @@ Works as specified by the requirements. Also has "member for", "last active", an
 
 === Questions
 
-Need to add comments to questions. Tags are specified by the user in a comma delimited list. The server will parse this list and update the taggings list appropriately. The tag list holds two indices, +tag_id+ and +taggable_id, taggable_type, context+ for high performance tag querying.
+Works as specified in the requirements. Tags are specified by the user in a comma delimited list. The server will parse this list and update the taggings list appropriately. The tag list holds two indices, +tag_id+ and +taggable_id, taggable_type, context+ for high performance tag querying.
 
 === Voting
 
