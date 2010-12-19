@@ -23,6 +23,16 @@ class Question < ActiveRecord::Base
     where("questions.title LIKE ?",  "%" + title + "%")
   }
 
+  scope :answered, lambda {|answered|
+    if(answered.to_i == 1)
+      joins("join answers on answers.question_id = questions.id").
+      group("questions.id").
+      where("answers.score > 0")
+    else
+      where("questions.id NOT IN (?)", Question.answered(1).map(&:id))
+    end
+  }
+
   def excerpt
     if text 
       exc = text[0, 190]

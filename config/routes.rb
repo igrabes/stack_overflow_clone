@@ -10,6 +10,9 @@ StackOverflowClone::Application.routes.draw do
 
   resources :questions do
     resources :answers
+    collection do
+      get 'tags'
+    end
   end
   resources :answers
 

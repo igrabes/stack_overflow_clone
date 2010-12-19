@@ -1,0 +1,14 @@
+<div class="subheader">
+  <h1> Tags </h1>
+</div>
+<% @tags.each do |tag| %>
+  <div style="display:inline; padding-left: 15px; padding-right: 15px"> <%= link_to tag.name, {:controller => :questions, :action => :index, :tagged_with => tag.name}, :class => 'post-tag' %>x<%= tag.count %></div>
+<% end %>
+
+<div class="subheader">
+  <h1> Tag Cloud </h1>
+</div>
+
+<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+  <%= link_to tag.name, { :controller  => :questions, :action => :index, :tagged_with => tag.name }, :class => css_class %>
+<% end %>

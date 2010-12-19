@@ -53,7 +53,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to(@question, :notice => 'Question was successfully created.') }
+        format.html { redirect_to(question_answers_path(@question), :notice => 'Question was successfully created.') }
         format.xml  { render :xml => @question, :status => :created, :location => @question }
       else
         format.html { render :action => "new" }
@@ -91,6 +91,10 @@ class QuestionsController < ApplicationController
       format.html { redirect_to(questions_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def tags
+    @tags = Question.tag_counts_on(:tags)
   end
 
   private

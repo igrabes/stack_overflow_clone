@@ -21,8 +21,9 @@
     <div class="nav mainnavs">
         <ul>
             <li><a id="nav-questions" href="/questions">Questions</a></li>
-            <li><a id="nav-tags" href="/tags">Tags</a></li>
-            <li><a id="nav-unanswered" href="/unanswered">Unanswered</a></li>
+            <li><%= link_to "Tags", tags_questions_path %></li>
+            <li><%= link_to "Answered", merge_params(:action => :index, :controller => :questions, :answered => 1)  %></li>
+            <li><%= link_to "Unanswered", merge_params(:action => :index, :controller => :questions, :answered => 0)  %></li>
         </ul>
     </div>
 
