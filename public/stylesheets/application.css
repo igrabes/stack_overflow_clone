@@ -417,3 +417,7 @@ div.field, div.actions {
   padding: 0px 6px 0px 3px;
   text-decoration: none;
 }
+
+.votearrow {
+  cursor: pointer;
+}

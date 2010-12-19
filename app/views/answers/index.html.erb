@@ -53,14 +53,36 @@
   </div>
 </div>
 
-
 <% if @question.user == current_user %>
   <%= link_to 'Edit this question', edit_question_path(@question) %> |
 <% end %>
 
-<%= link_to 'Answer this question', new_question_answer_path(@question) %> | <%= link_to 'Comment on this question', new_comment_answer_path(@question) %>
+<%= link_to 'Answer this question', new_question_answer_path(@question) %> | <%= link_to 'Comment on this question', new_question_comment_path(@question) %>
 
-<% if @answers %>
+<% if @question.comments.length > 0 %>
+  <div class="subheader">
+    <h1> Comments </h1>
+  </div>
+  <% @question.comments.each do |comment| %>
+    <table>
+      <tbody>
+        <td class="postcell">
+          <div class="post-text">
+            <%= comment.text %> 
+          </div>
+        </td>
+      </tbody>
+    </table>
+    <div class="started fr">
+      <div class="user-action-time">posted <span class="relativetime"> <%= time_ago_in_words(comment.created_at) %> ago</span></div>
+      <div class="user-details">
+        by <%= link_to comment.user.login, comment.user %>
+      </div>
+    </div>
+<% end %>
+<% end %>
+
+<% if @answers.length > 0 %>
   <div class="subheader">
     <h1>Answers</h1>
   </div>
@@ -89,10 +111,10 @@
       <div class="user-details">
         by <%= link_to answer.user.login, answer.user %>
       </div>
-      <% if current_user == answer.user %>
-      <% end %>
     </div>
-    <%= link_to "Edit this answer", edit_question_answer_path(answer.question, answer) %>
+    <% if current_user == answer.user %>
+      <%= link_to "Edit this answer", edit_question_answer_path(answer.question, answer) %>
+    <% end %>
   <% end %>
 <% end %>
 

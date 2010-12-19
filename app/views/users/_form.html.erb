@@ -10,24 +10,34 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :real_name %><br/>
-    <%= form.text_field :name %>
-  </div>
+  <% if action == 'edit' %>
+    <div class="field">
+      <%= form.label :real_name %><br/>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :hometown %><br/>
+      <%= form.text_field :hometown %>
+    </div>
+
+    <div class="field">
+      <%= form.label :birthday %><br/>
+      <%= form.date_select(:birthday, {:start_year => 1900, :end_year => Time.now.year}) %>
+    </div>
+  <% end %>
+
+  <% if action == 'new' %>
+    <div class="field">
+      <%= form.label :login %><br/>
+      <%= form.text_field :login %>
+    </div>
+  <% end %>
+
 
   <div class="field">
     <%= form.label :email %><br />
     <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hometown %><br/>
-    <%= form.text_field :hometown %>
-  </div>
-
-  <div class="field">
-    <%= form.label :birthday %><br/>
-    <%= form.date_select(:birthday, {:start_year => 1900, :end_year => Time.now.year}) %>
   </div>
 
   <div class="field">

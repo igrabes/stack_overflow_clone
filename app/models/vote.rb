@@ -1,10 +1,23 @@
+class VoteValidator < ActiveModel::Validator
+  def validate(record)
+    if record.user == record.voteable.user
+      record.errors[:base] << "You cannot vote for your own questions or answers"
+      return false
+    end
+    return true
+  end
+end
+
 class Vote < ActiveRecord::Base
+  #include VoteValidator
+
   belongs_to :voteable, :polymorphic => true
   belongs_to :user
 
   validates :value, :inclusion => {:in => [-1, 1]}
   validates_presence_of :user, :message => "You must be logged in to vote"
   validates_presence_of :voteable
+  validates_with VoteValidator
 
   after_save :update_score
 
@@ -23,3 +36,4 @@ class Vote < ActiveRecord::Base
   #end
 
 end
+

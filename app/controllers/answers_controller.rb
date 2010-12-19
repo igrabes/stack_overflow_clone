@@ -5,6 +5,8 @@ class AnswersController < ApplicationController
   before_filter :get_question, :only => [:new, :create, :edit, :update, :show, :destroy, :index]
 
   def index
+    @question.views += 1
+    @question.save
     if params[:question_id]
       @answers = Answer.find_all_by_question_id params[:question_id]
     else
