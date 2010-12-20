@@ -44,7 +44,7 @@ This is implemented as specified in the requirements. Famous, popular, and notab
 
 === Security
 
-This clone is built to be very secure.
+This web application was designed with security in mind
 
 * It is resistant to SQL injection, HTML injection, and Javascript injection attacks. 
 * It uses a CSRF token to resist cross-site request forgeries.
