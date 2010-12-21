@@ -48,6 +48,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(params[:question])
     @question.user = current_user
+    @question.update_active_at
 
     respond_to do |format|
       if @question.save
@@ -65,6 +66,7 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     verify_user(@question)
+    @question.update_active_at
 
     respond_to do |format|
       if @question.update_attributes(params[:question])

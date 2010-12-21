@@ -6,8 +6,6 @@ class Question < ActiveRecord::Base
   has_many :votes, :as => :voteable
   has_many :comments
 
-  before_save :update_active_at
-
   scope :sorted_by, lambda {|sort|
     if sort == "newest"
       order("created_at DESC")
